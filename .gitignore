@@ -1,0 +1,12 @@
+.vs
+Library
+Logs
+/obj
+/UserSettings
+/*.vsconfig
+/*.csproj
+/*.sln
+Examples & Extras
+Documentation
+.DS_Store
+Temp
