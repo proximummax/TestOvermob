@@ -65,7 +65,12 @@ public class ScoreList : MonoBehaviour
         currentElement.ScoreText.text = parameters._score.ToString();
         currentElement.IndexText.text = (_scoreListElementsParameters.IndexOf(parameters) + 1).ToString();
     }
-
+    private void SetElementParametersByAnotherElement(ScoreListElement elementFrom, ref ScoreListElement elementTo)
+    {
+        elementTo.Image.sprite = elementFrom.Image.sprite;
+        elementTo.ScoreText.text = elementFrom.ScoreText.text;
+        elementTo.IndexText.text = elementFrom.IndexText.text;
+    }
     
 
     private int GetIndexOfFirstShowingElementOnScreen()
@@ -93,19 +98,13 @@ public class ScoreList : MonoBehaviour
 
         if (selectedElementIndex < showingElement)
         {
-            _savedScoreListElementTop.Image.sprite = _currentSelectedElement.Image.sprite;
-            _savedScoreListElementTop.ScoreText.text = _currentSelectedElement.ScoreText.text;
-            _savedScoreListElementTop.IndexText.text = _currentSelectedElement.IndexText.text;
-
+            SetElementParametersByAnotherElement(_currentSelectedElement, ref _savedScoreListElementTop)
             _savedScoreListElementTop.gameObject.SetActive(true);
         }
 
         else if (selectedElementIndex > showingElement)
         {
-            _savedScoreListElementBottom.Image.sprite = _currentSelectedElement.Image.sprite;
-            _savedScoreListElementBottom.ScoreText.text = _currentSelectedElement.ScoreText.text;
-            _savedScoreListElementBottom.IndexText.text = _currentSelectedElement.IndexText.text;
-
+            SetElementParametersByAnotherElement(_currentSelectedElement, ref _savedScoreListElementBottom)
             _savedScoreListElementBottom.gameObject.SetActive(true);
         }
 
